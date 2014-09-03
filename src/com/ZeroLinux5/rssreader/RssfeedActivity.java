@@ -1,7 +1,8 @@
 package com.ZeroLinux5.rssreader;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 
 public class RssfeedActivity extends Activity implements MyListFragment.OnItemSelectedListener{
 
@@ -20,7 +21,13 @@ public class RssfeedActivity extends Activity implements MyListFragment.OnItemSe
             .findFragmentById(R.id.detailFragment);
         if (fragment != null && fragment.isInLayout()) {
           fragment.setText(link);
-        } 
+        } else {
+          Intent intent = new Intent(getApplicationContext(),
+                    DetailActivity.class);
+          intent.putExtra(DetailActivity.EXTRA_URL, link);
+          startActivity(intent);
+
+        }
   }
     
 } 
